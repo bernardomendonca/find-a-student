@@ -79,13 +79,13 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/founder">
+                <Link className="nav-link" to="/founders">
                   {" "}
                   Founders
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/founder">
+                <Link className="nav-link" to="/students">
                   {" "}
                   Students
                 </Link>
