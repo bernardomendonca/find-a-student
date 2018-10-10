@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body {
+  font-family: "Roboto", sans-serif !important;
+}
+
 img {
   width: 100%;
 }
@@ -38,3 +44,5 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+/* ========= LOGIN AND REGISTER FORM STYLING =========*/

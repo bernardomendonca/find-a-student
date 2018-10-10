@@ -10,28 +10,29 @@ const passport = require("passport");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-// Mongoose User Model
+// Loading the user model
 const User = require("../../models/User");
 
-// @route       GET request to api/users/test
-// @description Tests users route
-// @access      Public Route
-router.get("/test", (req, res) => res.json({ msg: "Users works" }));
+// @route GET api/users/test
+// @desc Tests users route
+// @access public
+router.get("/test", (req, res) => res.json());
 
-// @route GET api/users/register
+// @route POST api/users/register
 // @desc Register user
 // @access public
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
-  // Check validation
+  // checking validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      errors.email = "Email already exists";
+      return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(req.body.email, {
         s: "200", //size
@@ -39,7 +40,7 @@ router.post("/register", (req, res) => {
         d: "mm" //default
       });
 
-      const newUser = newUser({
+      const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         avatar,
@@ -61,7 +62,7 @@ router.post("/register", (req, res) => {
 });
 
 // @route POST api/users/login
-// @desc Login users / return JWT token
+// @desc Login users / return token
 // @access public
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
