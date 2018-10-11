@@ -59,9 +59,8 @@ class Login extends Component {
     return (
       <div className="login">
         <div className="card border-dark mb-3 mx-auto" style={style}>
-          <div className="card-header">Login</div>
+          <div className="card-header">Login as a Founder or Student</div>
           <div className="card-body">
-            <h5 className="card-title center">Login as a Founder or Student</h5>
             <form onSubmit={this.onSubmit}>
               <TextFieldGroup
                 placeholder="Email Adress"
@@ -79,10 +78,14 @@ class Login extends Component {
                 onChange={this.onChange}
                 error={errors.password}
               />
-              <input type="submit" className="btn btn-info btn-lg mt-4" />
+              <input
+                type="submit"
+                className="btn-block"
+                id="landing-button-form"
+              />
             </form>
           </div>
-          <div className="card-footer bg-transparent border-dark">
+          <div className="card-footer bg-transparent">
             Not a member? Register
             <Link to="/register"> here</Link>
           </div>

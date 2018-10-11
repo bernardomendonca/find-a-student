@@ -38,13 +38,32 @@ router.get(
   }
 );
 
-// @route       GET request to api/profile/all
-// @description Get all profiles
+// @route       GET request to api/profile/students
+// @description Get all students profiles
 // @access      Public
-router.get("/all", (req, res) => {
+router.get("/students", (req, res) => {
   const errors = {};
 
-  Profile.find()
+  Profile.find({ status: "Student" })
+    .populate("user", ["name", "avatar"])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = "There are no profiles";
+        return res.status(404).json(errors);
+      }
+
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json({ profile: "There are no profiles" }));
+});
+
+// @route       GET request to api/profile/founders
+// @description Get all founders profiles
+// @access      Public
+router.get("/founders", (req, res) => {
+  const errors = {};
+
+  Profile.find({ status: "Founder" })
     .populate("user", ["name", "avatar"])
     .then(profiles => {
       if (!profiles) {
@@ -161,6 +180,122 @@ router.post(
         });
       }
     });
+  }
+);
+
+// @route       POST request to api/profile/experience
+// @description Add experience to profile
+// @access      Private
+router.post(
+  "/experience",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateExperienceInput(req.body);
+
+    // Check that validation
+    if (!isValid) {
+      // return any errors (status 400)
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newExp = {
+        title: req.body.title,
+        company: req.body.company,
+        location: req.body.location,
+        from: req.body.from,
+        to: req.body.to,
+        current: req.body.current,
+        description: req.body.description
+      };
+
+      //Add to experience Array
+      profile.experience.unshift(newExp);
+
+      profile.save().then(profile => res.json(profile));
+    });
+  }
+);
+
+// @route       POST request to api/profile/education
+// @description Add education to profile
+// @access      Private
+router.post(
+  "/education",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateEducationInput(req.body);
+
+    // Check that validation
+    if (!isValid) {
+      // return any errors (status 400)
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newEdu = {
+        school: req.body.school,
+        degree: req.body.degree,
+        fieldofstudy: req.body.fieldofstudy,
+        from: req.body.from,
+        to: req.body.to,
+        current: req.body.current,
+        description: req.body.description
+      };
+
+      //Add to experience Array
+      profile.education.unshift(newEdu);
+
+      profile.save().then(profile => res.json(profile));
+    });
+  }
+);
+
+// @route       DELETE request to api/profile/experience/:exp_id
+// @description Delete experience from profile
+// @access      Private
+router.delete(
+  "/experience/:exp_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get remove index
+        const removeIndex = profile.experience
+          .map(item => item.id)
+          .indexOf(req.params.exp_id);
+
+        // Splice out of array
+        profile.experience.splice(removeIndex, 1);
+
+        // Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// @route       DELETE request to api/profile/education/:edu_id
+// @description Delete education from profile
+// @access      Private
+router.delete(
+  "/education/:edu_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get remove index
+        const removeIndex = profile.education
+          .map(item => item.id)
+          .indexOf(req.params.edu_id);
+
+        // Splice out of array
+        profile.education.splice(removeIndex, 1);
+
+        // Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
   }
 );
 

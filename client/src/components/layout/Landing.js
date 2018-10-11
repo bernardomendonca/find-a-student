@@ -15,19 +15,33 @@ class Landing extends Component {
       <div className="landing">
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
-            <div className="row">
+            <div className="row vertical-center col-md-9 mx-auto">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Founder & Student</h1>
+                <h1 className="display-1 mb-1">
+                  Founder
+                  <br />& Student
+                </h1>
                 <p className="lead">
                   {" "}
                   Helping startup founders and international students find each
                   other
                 </p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
+              </div>
+              <div className="col-md-8 mx-auto">
+                <Link
+                  to="/register"
+                  className="mb-4 btn-block"
+                  id="landing-button-signup"
+                >
                   Sign Up
                 </Link>
-                <Link to="/login" className="btn btn-lg btn-light">
+                <br />
+                <Link
+                  to="/login"
+                  className="btn-block"
+                  id="landing-button-login"
+                >
                   Login
                 </Link>
               </div>

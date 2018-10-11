@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import ProfileItem from "./ProfileItem";
-import { getProfiles } from "../../actions/profileActions";
+import { getStudentsProfiles } from "../../actions/profileActions";
 
-class Profiles extends Component {
+class StudentsProfiles extends Component {
   componentDidMount() {
-    this.props.getProfiles();
+    this.props.getStudentsProfiles();
   }
 
   render() {
@@ -31,9 +31,9 @@ class Profiles extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Developer Profiles</h1>
+              <h1 className="display-4 text-center">Students Profiles</h1>
               <p className="lead text-center">
-                Browse and connect with developers
+                Browse and connect with Students
               </p>
               {profileItems}
             </div>
@@ -44,7 +44,7 @@ class Profiles extends Component {
   }
 }
 
-Profiles.propTypes = {
+StudentsProfiles.propTypes = {
   getProfiles: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -55,5 +55,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProfiles }
-)(Profiles);
+  { getStudentsProfiles }
+)(StudentsProfiles);
