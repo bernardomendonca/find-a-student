@@ -58,10 +58,7 @@ class Register extends Component {
 
     return (
       <div className="register">
-        <div className="card border-dark mb-3 mx-auto" style={style}>
-          <div className="card-header">
-            Create your Founder & Student account
-          </div>
+        <div className="card mb-3 mx-auto form-shadow" style={style}>
           <div className="card-body">
             <form noValidate onSubmit={this.onSubmit}>
               <TextFieldGroup

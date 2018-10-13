@@ -58,8 +58,7 @@ class Login extends Component {
 
     return (
       <div className="login">
-        <div className="card border-dark mb-3 mx-auto" style={style}>
-          <div className="card-header">Login as a Founder or Student</div>
+        <div className="card mb-3 mx-auto form-shadow" style={style}>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <TextFieldGroup
