@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
-import ProfileActions from "./ProfileActions";
+import ProfileActionsStudent from "./ProfileActionsStudent";
+import ProfileActionsFounder from "./ProfileActionsFounder";
 import Experience from "./Experience";
 import Education from "./Education";
 
@@ -33,7 +34,13 @@ class Dashboard extends Component {
             <p className="lead text-muted">
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
             </p>
-            <ProfileActions />
+
+            {profile.status === "Student" ? (
+              <ProfileActionsStudent />
+            ) : (
+              <ProfileActionsFounder />
+            )}
+
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
             <div style={{ marginBottom: "60px" }} />
@@ -50,9 +57,15 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not set up your profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create Profile
+            <p>
+              Looks like you're new here. Please let us know if you are a
+              Student or Founder and add some info to your profile
+            </p>
+            <Link to="/create-profile-student" className="btn btn-lg btn-info">
+              Create Profile as a Student
+            </Link>
+            <Link to="/create-profile-founder" className="btn btn-lg btn-info">
+              Create Profile as a Founder
             </Link>
           </div>
         );
@@ -63,10 +76,7 @@ class Dashboard extends Component {
       <div className="dashboard">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
-              {dashboardContent}
-            </div>
+            <div className="col-md-12">{dashboardContent}</div>
           </div>
         </div>
       </div>

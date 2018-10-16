@@ -6,9 +6,9 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
-import { createProfile } from "../../actions/profileActions";
+import { createProfileFounder } from "../../actions/profileActions";
 
-class CreateProfile extends Component {
+class CreateProfileFounder extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +17,6 @@ class CreateProfile extends Component {
       company: "",
       website: "",
       location: "",
-      status: "",
-      skills: "",
-      githubusername: "",
       bio: "",
       twitter: "",
       facebook: "",
@@ -47,9 +44,6 @@ class CreateProfile extends Component {
       company: this.state.company,
       website: this.state.website,
       location: this.state.location,
-      status: this.state.status,
-      skills: this.state.skills,
-      githubusername: this.state.githubusername,
       bio: this.state.bio,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
@@ -58,7 +52,7 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    this.props.createProfileFounder(profileData, this.props.history);
   }
 
   onChange(e) {
@@ -121,14 +115,6 @@ class CreateProfile extends Component {
       );
     }
 
-    const options = [
-      { label: "* Are you a Founder or a Student?", value: 0 },
-      { label: "Founder", value: "Founder" },
-      { label: "Student", value: "Student" },
-      { label: "Recruiter", value: "Recruiter" },
-      { label: "Other", value: "Other" }
-    ];
-
     return (
       <div className="create-profile">
         <div className="container">
@@ -147,15 +133,6 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
-                />
-                <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.status}
-                  info="Give us an idea of where you are at in your career"
                 />
                 <TextFieldGroup
                   placeholder="Company"
@@ -180,22 +157,6 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.location}
                   info="City or city & state suggest (eg. Boston, MA)"
-                />
-                <TextFieldGroup
-                  placeholder="* Skills"
-                  name="skills"
-                  value={this.state.skills}
-                  onChange={this.onChange}
-                  error={errors.skills}
-                  info="Please use comma separated values (eg. HTML, CSS, Java, PHP)"
-                />
-                <TextFieldGroup
-                  placeholder="GitHub Username"
-                  name="githubusername"
-                  value={this.state.githubusername}
-                  onChange={this.onChange}
-                  error={errors.githubusername}
-                  info="If you want your latest repos and github link, include your username"
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
@@ -235,7 +196,7 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
+CreateProfileFounder.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -247,5 +208,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile }
-)(withRouter(CreateProfile));
+  { createProfileFounder }
+)(withRouter(CreateProfileFounder));
