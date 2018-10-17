@@ -16,13 +16,22 @@ module.exports = function validateProfileInput(data) {
     errors.handle = "Profile Handle is required";
   }
 
+  if (Validator.isEmpty(data.description)) {
+    errors.description = "Description is required";
+  }
+
+  if (!Validator.isLength(data.description, { max: 40 })) {
+    errors.description =
+      "Your description has to have a maximum of 140 characters";
+  }
+
   // if (Validator.isEmpty(data.status)) {
   //   errors.status = "Status field is required";
   // }
 
-  if (Validator.isEmpty(data.skills)) {
-    errors.skills = "Skills field is required";
-  }
+  // if (Validator.isEmpty(data.skills)) {
+  //   errors.skills = "Skills field is required";
+  // }
 
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {

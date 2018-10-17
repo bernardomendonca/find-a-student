@@ -23,6 +23,7 @@ class CreateProfileStudent extends Component {
       skills: "",
       githubusername: "",
       bio: "",
+      description: "",
       twitter: "",
       facebook: "",
       linkedin: "",
@@ -83,6 +84,7 @@ class CreateProfileStudent extends Component {
         skills: skillsCSV,
         githubusername: profile.githubusername,
         bio: profile.bio,
+        description: profile.description,
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
@@ -102,6 +104,7 @@ class CreateProfileStudent extends Component {
       skills: this.state.skills,
       githubusername: this.state.githubusername,
       bio: this.state.bio,
+      description: this.state.description,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
@@ -190,6 +193,14 @@ class CreateProfileStudent extends Component {
                   onChange={this.onChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
+                />
+                <TextFieldGroup
+                  placeholder="* Description"
+                  name="description"
+                  value={this.state.description}
+                  onChange={this.onChange}
+                  error={errors.description}
+                  info="A description for yourself. e.g.: 'JavaScript Ninja' or 'UX Wizard'. It has to be 140 characters by the way. Yeah, just like twitter"
                 />
                 <TextFieldGroup
                   placeholder="Website"

@@ -17,7 +17,7 @@ class ProfileItem extends Component {
 
             <div className="profileinfo">
               <h1>{profile.user.name}</h1>
-              <p className="bio">{profile.bio}</p>
+              <p className="bio">{profile.description}</p>
             </div>
           </div>
         </div>

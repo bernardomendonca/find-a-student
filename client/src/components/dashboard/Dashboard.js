@@ -61,11 +61,21 @@ class Dashboard extends Component {
               Looks like you're new here. Please let us know if you are a
               Student or Founder and add some info to your profile
             </p>
-            <Link to="/create-profile-student" className="btn btn-lg btn-info">
-              Create Profile as a Student
+            <Link
+              to="/create-profile-student"
+              className="btn"
+              id="landing-button-form"
+              style={{ margin: "3px" }}
+            >
+              I'm a student
             </Link>
-            <Link to="/create-profile-founder" className="btn btn-lg btn-info">
-              Create Profile as a Founder
+            <Link
+              to="/create-profile-founder"
+              className="btn"
+              id="landing-button-form"
+              style={{ margin: "3px" }}
+            >
+              I'm a founder
             </Link>
           </div>
         );

@@ -76,6 +76,7 @@ class CreateProfileFounder extends Component {
         website: profile.website,
         location: profile.location,
         bio: profile.bio,
+        description: profile.description,
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
@@ -94,6 +95,7 @@ class CreateProfileFounder extends Component {
       website: this.state.website,
       location: this.state.location,
       bio: this.state.bio,
+      description: this.state.description,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
@@ -182,6 +184,14 @@ class CreateProfileFounder extends Component {
                   onChange={this.onChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
+                />
+                <TextFieldGroup
+                  placeholder="* Description"
+                  name="description"
+                  value={this.state.description}
+                  onChange={this.onChange}
+                  error={errors.description}
+                  info="A description for yourself. e.g.: 'Founder at company X' or 'Recruiting for Y'. It has to be 140 characters by the way. Yeah, just like twitter"
                 />
                 <TextFieldGroup
                   placeholder="Company"

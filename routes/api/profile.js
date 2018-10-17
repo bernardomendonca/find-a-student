@@ -141,6 +141,7 @@ router.post(
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.location) profileFields.location = req.body.location;
     if (req.body.bio) profileFields.bio = req.body.bio;
+    if (req.body.description) profileFields.description = req.body.description;
     if (req.body.githubusername)
       profileFields.githubusername = req.body.githubusername;
     // SKILLS - Split into an array (it comes in Comma Separated Values);
@@ -202,6 +203,7 @@ router.post(
     profileFields.user = req.user.id;
     profileFields.status = "Founder";
     if (req.body.handle) profileFields.handle = req.body.handle;
+    if (req.body.description) profileFields.description = req.body.description;
     if (req.body.company) profileFields.company = req.body.company;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.location) profileFields.location = req.body.location;

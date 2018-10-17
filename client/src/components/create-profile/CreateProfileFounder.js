@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
-import SelectListGroup from "../common/SelectListGroup";
 import { createProfileFounder } from "../../actions/profileActions";
 
 class CreateProfileFounder extends Component {
@@ -18,6 +17,7 @@ class CreateProfileFounder extends Component {
       website: "",
       location: "",
       bio: "",
+      description: "",
       twitter: "",
       facebook: "",
       linkedin: "",
@@ -45,6 +45,7 @@ class CreateProfileFounder extends Component {
       website: this.state.website,
       location: this.state.location,
       bio: this.state.bio,
+      description: this.state.description,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
@@ -133,6 +134,14 @@ class CreateProfileFounder extends Component {
                   onChange={this.onChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
+                />
+                <TextFieldGroup
+                  placeholder="* Description"
+                  name="description"
+                  value={this.state.description}
+                  onChange={this.onChange}
+                  error={errors.description}
+                  info="A description for yourself. e.g.: 'Founder at company X' or 'Recruiting for Y'. It has to be 140 characters by the way. Yeah, just like twitter"
                 />
                 <TextFieldGroup
                   placeholder="Company"

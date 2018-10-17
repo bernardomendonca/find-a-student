@@ -12,6 +12,11 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
+  description: {
+    type: String,
+    required: true,
+    max: 140
+  },
   company: {
     type: String
   },
@@ -22,12 +27,12 @@ const ProfileSchema = new Schema({
     type: String
   },
   status: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   skills: {
-    type: [String],
-    required: true
+    type: [String]
+    // required: true
   },
   bio: {
     type: String
